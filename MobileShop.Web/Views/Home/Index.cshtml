@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Gadgetopia  Dashboard";
+}
+
+<main class="container">
+    <!-- Header Section -->
+    <header class="text-center my-5">
+        <h1 class="display-4">Welcome to Gadgetopia</h1>
+        <p class="lead">Browse the latest smartphones, manage orders, and explore top brands!</p>
+    </header>
+
+    <div class="row">
+        <!-- Browse Products Section -->
+        <section class="col-md-4 text-center">
+            <h2>Browse Products</h2>
+            <p>Explore the latest smartphones and accessories from top brands.</p>
+            <p><a class="btn btn-primary" href="@Url.Action("Index", "Products")">Shop Now &raquo;</a></p>
+        </section>
+
+        <!-- My Orders Section -->
+        <section class="col-md-4 text-center">
+            <h2>My Orders</h2>
+            <p>Track your orders, check delivery status, and view past purchases.</p>
+            <p><a class="btn btn-warning" href="@Url.Action("Orders", "Account")">View Orders &raquo;</a></p>
+        </section>
+
+        <!-- Account Management Section -->
+        <section class="col-md-4 text-center">
+            <h2>My Account</h2>
+            <p>Update your profile, manage addresses, and secure your purchases.</p>
+            <p><a class="btn btn-outline-dark" href="@Url.Action("Profile", "Account")">Manage Account &raquo;</a></p>
+        </section>
+    </div>
+
+    <div class="text-center mt-4">
+        <p class="lead">Need Help? <a href="@Url.Action("Support", "Home")">Contact Support</a></p>
+    </div>
+</main>
