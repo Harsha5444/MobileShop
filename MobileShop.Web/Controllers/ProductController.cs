@@ -14,5 +14,10 @@ namespace MobileShop.Web.Controllers
         {
             return View(dBEntities.Products.ToList());
         }
+        public ActionResult ProductDetails(int id)
+        {
+            Product productDetails = dBEntities.Products.Find(id);
+            return View(productDetails);
+        }
     }
 }
