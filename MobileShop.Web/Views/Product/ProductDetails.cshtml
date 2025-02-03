@@ -1,9 +1,5 @@
 ﻿@model MobileShop.Web.Models.Product
 
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,8 +64,8 @@
 
                 <p><strong>Brand:</strong> @Model.Brand.BrandName</p>
                 <p><strong>Category:</strong> @Model.Category.CategoryName</p>
-                <p><strong>Stock:</strong> @Model.Stock available</p>
-                <p><strong>Created At:</strong> @Model.CreatedAt</p>
+                <p><strong>Stock available:</strong> @Model.Stock</p>
+                <p><strong>Added At:</strong> @Model.CreatedAt</p>
                 <p><strong>Active:</strong> @(Model.Active)</p>
 
                 <!-- Action Buttons -->
