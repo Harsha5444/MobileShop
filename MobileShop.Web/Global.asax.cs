@@ -14,5 +14,9 @@ namespace MobileShop.Web
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
+        protected void Session_Start()
+        {
+            Session["UserName"] = null;
+        }
     }
 }
