@@ -1,0 +1,117 @@
+﻿@model MobileShop.Web.Models.ProductEditViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <title>Edit Product</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ2QeK4S0Ckp9KSuXWTpV2v24lm7niAwV6mGG7N0ht+aKrr94E9gKj0ZlGpD" crossorigin="anonymous">
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KJ3o2DKtIkvYIKS1sG5EXuVs7tXv2pM8F9z1fFV4z7Rhb9KPrc9WJkBqq6R78q73" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w3TCqUSlIEkIxpNwrx3oV2LZryy/P3lzRNYFQhDZZe8Q0mjynmnPRe4X6Kq8GlCw" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <form method="post">
+            <div class="form-horizontal">
+                <h4>Edit Product</h4>
+                <hr />
+                <!-- Validation Summary -->
+                <div class="text-danger">
+                    <!-- Here you can display validation errors -->
+                </div>
+                <input type="hidden" name="ProductID" value="@Model.product.ProductID" />
+
+                <div class="form-group row">
+                    <label for="ProductName" class="control-label col-md-2">Product Name</label>
+                    <div class="col-md-10">
+                        <input type="text" id="ProductName" name="ProductName" class="form-control" value="@Model.product.ProductName" />
+                        <div class="text-danger">
+                            <!-- Validation message for ProductName -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="Price" class="control-label col-md-2">Price</label>
+                    <div class="col-md-10">
+                        <input type="text" id="Price" name="Price" class="form-control" value="@Model.product.Price" />
+                        <div class="text-danger">
+                            <!-- Validation message for Price -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="Stock" class="control-label col-md-2">Stock</label>
+                    <div class="col-md-10">
+                        <input type="text" id="Stock" name="Stock" class="form-control" value="@Model.product.Stock" />
+                        <div class="text-danger">
+                            <!-- Validation message for Stock -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="ImagePath" class="control-label col-md-2">Image Path</label>
+                    <div class="col-md-10">
+                        <input type="text" id="ImagePath" name="ImagePath" class="form-control" value="@Model.product.ImagePath" />
+                        <div class="text-danger">
+                            <!-- Validation message for ImagePath -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="CategoryID" class="control-label col-md-2">Category</label>
+                    <div class="col-md-10">
+                        <select id="CategoryID" name="CategoryID" class="form-control">
+                            @foreach (var category in Model.categories)
+                            {
+                                <option value="@category.CategoryID" @(category.CategoryID == Model.product.CategoryID ? "selected" : "")>
+                                    @category.CategoryName
+                                </option>
+                            }
+                        </select>
+                        <div class="text-danger">
+                            <!-- Validation message for CategoryID -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="BrandID" class="control-label col-md-2">Brand</label>
+                    <div class="col-md-10">
+                        <select id="BrandID" name="BrandID" class="form-control">
+                            @foreach (var category in Model.brands)
+                            {
+                                <option value="@category.BrandID" @(category.BrandID == Model.product.BrandID ? "selected" : "")>
+                                    @category.BrandName
+                                </option>
+                            }
+                        </select>
+                        <div class="text-danger">
+                            <!-- Validation message for BrandID -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-10 offset-md-2">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div>
+            <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</body>
+</html>
