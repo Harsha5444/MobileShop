@@ -1,8 +1,6 @@
 ﻿using MobileShop.Web.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MobileShop.Web.Controllers
@@ -48,7 +46,7 @@ namespace MobileShop.Web.Controllers
         {
             Brand b = dBEntities.Brands.Find(id);
             return View(b);
-        }        
+        }
         [HttpPost]
         public ActionResult Delete(int id, string test)
         {

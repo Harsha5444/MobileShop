@@ -1,9 +1,7 @@
 ﻿using MobileShop.Web.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MobileShop.Web.Controllers
@@ -51,7 +49,7 @@ namespace MobileShop.Web.Controllers
             return View(c);
         }
         [HttpPost]
-        public RedirectToRouteResult Delete(int id,string test)
+        public RedirectToRouteResult Delete(int id, string test)
         {
             dBEntities.Categories.Remove(dBEntities.Categories.Find(id));
             dBEntities.SaveChanges();

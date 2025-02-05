@@ -1,8 +1,5 @@
 ﻿using MobileShop.Web.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MobileShop.Web.Controllers
@@ -32,7 +29,7 @@ namespace MobileShop.Web.Controllers
             {
                 dBEntities.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 dBEntities.SaveChanges();
-                return RedirectToAction("Login","Home");
+                return RedirectToAction("Login", "Home");
             }
             return View(user);
         }

@@ -51,13 +51,9 @@ namespace MobileShop.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(user); // Return with errors if validation fails
+                return View(user); 
             }
-
-            // Normalize email for case-insensitive comparison
             string normalizedEmail = user.Email.Trim().ToLower();
-
-            // Ensure email does not already exist
             if (dBEntities.Users.Any(u => u.Email.ToLower() == normalizedEmail))
             {
                 ModelState.AddModelError("Email", "Email is already registered");
@@ -73,7 +69,6 @@ namespace MobileShop.Web.Controllers
                 ModelState.AddModelError("ConfirmPassword", "Password does not match");
                 return View(user);
             }
-
             user.Email = normalizedEmail;
             user.CreatedAt = DateTime.Now;
             dBEntities.Users.Add(user);

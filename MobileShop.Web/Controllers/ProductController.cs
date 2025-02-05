@@ -1,6 +1,4 @@
 ﻿using MobileShop.Web.Models;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -22,21 +20,16 @@ namespace MobileShop.Web.Controllers
         }
         public ActionResult Edit(int id)
         {
-           
-            var product = dBEntities.Products.FirstOrDefault(p => p.ProductID == id);
 
-            // Get all categories for the dropdown
+            var product = dBEntities.Products.FirstOrDefault(p => p.ProductID == id);
             var categories = dBEntities.Categories.ToList();
             var brands = dBEntities.Brands.ToList();
-
-            // Create a ViewModel (you can also use the Product model directly if it's already set up)
             var viewModel = new ProductEditViewModel
             {
                 product = product,
-                categories = categories, // Populate the categories
+                categories = categories,
                 brands = brands
             };
-
             return View(viewModel);
         }
         [HttpPost]
@@ -70,21 +63,17 @@ namespace MobileShop.Web.Controllers
                 {
                     string path = Path.Combine(Server.MapPath("~/Images/"), Path.GetFileName(ImageFile.FileName));
                     ImageFile.SaveAs(path);
-                    viewModel.product.ImagePath = "/Images/" + ImageFile.FileName; // Store relative path
+                    viewModel.product.ImagePath = "/Images/" + ImageFile.FileName; 
                 }
 
                 dBEntities.Products.Add(viewModel.product);
                 dBEntities.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            // Reload dropdown lists if validation fails
             viewModel.categories = dBEntities.Categories.ToList();
             viewModel.brands = dBEntities.Brands.ToList();
-
             return View(viewModel);
         }
-
         public ActionResult Delete(int id)
         {
             var product = dBEntities.Products.FirstOrDefault(p => p.ProductID == id);
