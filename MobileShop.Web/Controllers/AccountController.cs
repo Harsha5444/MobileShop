@@ -20,6 +20,21 @@ namespace MobileShop.Web.Controllers
             User userdetails = dBEntities.Users.SingleOrDefault(u => u.Username == username);
             return View(userdetails);
         }
-
+        public ActionResult EditProfile(int id)
+        {
+            var user = dBEntities.Users.FirstOrDefault(u => u.UserID == id);
+            return View(user);
+        }
+        [HttpPost]
+        public ActionResult EditProfile(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                dBEntities.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                dBEntities.SaveChanges();
+                return RedirectToAction("Login","Home");
+            }
+            return View(user);
+        }
     }
 }

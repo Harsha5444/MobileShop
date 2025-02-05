@@ -71,6 +71,7 @@
                 <!-- Action Buttons -->
                 <div>
                     <a href="@Url.Action("Edit", "Product", new { id = Model.ProductID })" class="btn btn-warning">Edit</a>
+                    <a href="@Url.Action("Delete", "Product", new { id = Model.ProductID })" class="btn btn-danger">Delete</a>
                     <a href="@Url.Action("Index", "Product")" class="btn btn-secondary">Back to List</a>
                 </div>
             </div>

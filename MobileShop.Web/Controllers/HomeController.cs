@@ -47,7 +47,7 @@ namespace MobileShop.Web.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Register(User user)
+        public ActionResult Register(User user,string ConfirmPassword)
         {
             if (!ModelState.IsValid)
             {
@@ -61,6 +61,16 @@ namespace MobileShop.Web.Controllers
             if (dBEntities.Users.Any(u => u.Email.ToLower() == normalizedEmail))
             {
                 ModelState.AddModelError("Email", "Email is already registered");
+                return View(user);
+            }
+            if(dBEntities.Users.Any(u => u.Username.ToLower() == user.Username.ToLower()))
+            {
+                ModelState.AddModelError("Username", "Username is already registered");
+                return View(user);
+            }
+            if(user.PasswordHash != ConfirmPassword)
+            {
+                ModelState.AddModelError("ConfirmPassword", "Password does not match");
                 return View(user);
             }
 
