@@ -52,12 +52,10 @@
 
     <div class="container">
         <div class="product-container">
-            <!-- Product Image -->
             <div>
                 <img src="@Model.ImagePath" alt="Product Image" class="product-image img-fluid">
             </div>
 
-            <!-- Product Details -->
             <div class="product-details">
                 <div class="product-title">@Model.ProductName</div>
                 <div class="product-price">$@Model.Price</div>
@@ -65,10 +63,7 @@
                 <p><strong>Brand:</strong> @Model.Brand.BrandName</p>
                 <p><strong>Category:</strong> @Model.Category.CategoryName</p>
                 <p><strong>Stock available:</strong> @Model.Stock</p>
-                <p><strong>Added At:</strong> @Model.CreatedAt</p>
-                <p><strong>Active:</strong> @(Model.Active)</p>
 
-                <!-- Action Buttons -->
                 <div>
                     <a href="@Url.Action("Edit", "Product", new { id = Model.ProductID })" class="btn btn-warning">Edit</a>
                     <a href="@Url.Action("Delete", "Product", new { id = Model.ProductID })" class="btn btn-danger">Delete</a>
