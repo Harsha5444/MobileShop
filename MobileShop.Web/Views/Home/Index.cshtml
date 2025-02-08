@@ -1,38 +1,278 @@
 ﻿@{
-    ViewBag.Title = "Gadgetopia  Dashboard";
+    ViewBag.Title = "Gadgetopia Dashboard";
 }
 
-<main class="container">
-    <!-- Header Section -->
-    <header class="text-center my-5">
-        <h1 class="display-4">Welcome to Gadgetopia</h1>
-        <p class="lead">Browse the latest smartphones, manage orders, and explore top brands!</p>
-    </header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #60a5fa;
+            --accent-color: #3b82f6;
+            --background-light: #f0f9ff;
+            --background-white: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --hover-color: #1d4ed8;
+        }
 
-    <div class="row">
-        <!-- Browse Products Section -->
-        <section class="col-md-4 text-center">
-            <h2>Browse Products</h2>
-            <p>Explore the latest smartphones, Laptops and accessories from top brands.</p>
-            <p><a class="btn btn-primary" href="@Url.Action("Index", "Product")">Shop Now &raquo;</a></p>
-        </section>
+        body {
+            background: linear-gradient(135deg, var(--background-light) 0%, var(--background-white) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
 
-        <!-- My Orders Section -->
-        <section class="col-md-4 text-center">
-            <h2>My Orders</h2> 
-            <p>Track your orders, check delivery status, and view past purchases.</p>
-            <p><a class="btn btn-warning" href="@Url.Action("Orders", "Account")">View Orders &raquo;</a></p>
-        </section>
+        .dashboard-header {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+            border-radius: 0 0 2rem 2rem;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2);
+        }
 
-        <!-- Account Management Section -->
-        <section class="col-md-4 text-center">
-            <h2>My Account</h2>
-            <p>Update your profile, manage addresses, and secure your purchases.</p>
-            <p><a class="btn btn-outline-dark" href="@Url.Action("Profile", "Account")">Manage Account &raquo;</a></p>
-        </section>
+        .dashboard-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .dashboard-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--background-white);
+            border-radius: 1rem;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+
+            .feature-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(45deg, transparent, rgba(37, 99, 235, 0.05));
+                opacity: 0;
+                transition: all 0.3s ease;
+            }
+
+            .feature-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
+            }
+
+                .feature-card:hover::before {
+                    opacity: 1;
+                }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            color: var(--hover-color);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .btn-custom {
+            padding: 0.8rem 1.5rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+        }
+
+            .btn-custom::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+                transition: all 0.5s ease;
+            }
+
+            .btn-custom:hover::before {
+                left: 100%;
+            }
+
+        .btn-shop {
+            background: linear-gradient(45deg, #2563eb, #3b82f6);
+            color: white;
+        }
+
+        .btn-orders {
+            background: linear-gradient(45deg, #f59e0b, #fbbf24);
+            color: white;
+        }
+
+        .btn-account {
+            background: linear-gradient(45deg, #475569, #64748b);
+            color: white;
+        }
+
+        .support-section {
+            background: var(--background-white);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+
+        .support-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+            .support-link:hover {
+                color: var(--hover-color);
+                text-decoration: none;
+            }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--background-white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--background-light);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @@keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Rest of the HTML remains the same -->
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
     </div>
 
-    <div class="text-center mt-4">
-        <p class="lead">Need Help? <a href="@Url.Action("Support", "Home")">Contact Support</a></p>
-    </div>
-</main>
+    <main class="container-fluid p-0">
+        <!-- Header Section -->
+        <header class="dashboard-header text-center">
+            <h1 class="dashboard-title">Welcome to Gadgetopia</h1>
+            <p class="dashboard-subtitle">Your one-stop destination for premium gadgets, seamless ordering, and exceptional service</p>
+        </header>
+
+        <div class="container">
+            <div class="row g-4">
+                <!-- Browse Products Section -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card">
+                        <i class="fas fa-mobile-alt feature-icon"></i>
+                        <h2 class="feature-title">Browse Products</h2>
+                        <p class="feature-description">Discover the latest smartphones, laptops, and accessories from leading brands. Experience innovation at your fingertips.</p>
+                        <a class="btn btn-custom btn-shop w-100" href="@Url.Action("Index", "Product")">
+                            <i class="fas fa-shopping-cart me-2"></i>Shop Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- My Orders Section -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <i class="fas fa-box-open feature-icon"></i>
+                        <h2 class="feature-title">My Orders</h2>
+                        <p class="feature-description">Keep track of your purchases, monitor delivery status, and review your order history with ease.</p>
+                        <a class="btn btn-custom btn-orders w-100" href="@Url.Action("Orders", "Account")">
+                            <i class="fas fa-clipboard-list me-2"></i>View Orders
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Account Management Section -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card">
+                        <i class="fas fa-user-circle feature-icon"></i>
+                        <h2 class="feature-title">My Account</h2>
+                        <p class="feature-description">Manage your profile, update shipping details, and ensure secure transactions effortlessly.</p>
+                        <a class="btn btn-custom btn-account w-100" href="@Url.Action("Profile", "Account")">
+                            <i class="fas fa-cog me-2"></i>Manage Account
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support Section -->
+            <div class="support-section text-center" data-aos="fade-up" data-aos-delay="400">
+                <p class="lead mb-0">
+                    <i class="fas fa-headset me-2"></i>
+                    Need assistance? Our support team is here to help!
+                    <a href="@Url.Action("Support", "Home")" class="support-link ms-2">Contact Support</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Remove loading overlay
+        window.addEventListener('load', function () {
+            document.querySelector('.loading-overlay').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
